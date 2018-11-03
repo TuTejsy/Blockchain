@@ -84,7 +84,7 @@ Block Blockchain::createGenesisBlock() {
 void Blockchain::addBlock(SomeData data) {
 	int index = (int)chain.size() - 1;
 	vector<Block>::iterator it;
-	it = chain.begin();
+	it = chain.end();
 	Block prevBlock = *(it - 1);
 	Block newBlock(index, data, prevBlock.getHash() /*BYAAAAAAAT*/);
 }
@@ -104,9 +104,21 @@ bool Blockchain::isChainVaild() {
 			}
 		}
 	}
+	return true;
 }
 int main() {
 	//starting Blockchain
-	
+	Blockchain velcoin;
+	//data
+	SomeData data1;
+	data1.amount = 1;
+	data1.data = "Putin wwedi vojska";
+	velcoin.addBlock(data1);
+	cout << velcoin.isChainVaild();
+	SomeData data2;
+	data2.amount = 2;
+	data2.data = "Putin dai deneh";
+	velcoin.addBlock(data2);
+	cout << velcoin.isChainVaild();
 	return 0;
 }
